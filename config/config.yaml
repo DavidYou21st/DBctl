@@ -1,0 +1,20 @@
+viper:
+  path: "./config/config.yaml"
+
+mysql:
+  charset: utf8
+  host: 192.168.2.121
+  port: 13306
+  DBName: im_admin
+  password: 123456
+  parameters: charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+  user: root
+
+dal:
+  OutPath: "./dal/query"
+  OutFile: "gen.go"
+  Table: ""
+  ModelPkgPath: ""
+
+file:
+  Style: "zeusCloud"

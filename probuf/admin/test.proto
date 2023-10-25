@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package probuf;
+
+import "google/api/annotations.proto";
+
+option go_package = "fctl/probuf/admin";
+
+service Test {
+	// 列表
+	rpc Get(TestGetRequest) returns (TestGetResponse) {
+		option (google.api.http) = {
+			get: "/admin/test"
+		};
+	}
+
+	// 创建
+	rpc Post(TestPostRequest) returns (TestPostResponse) {
+		option (google.api.http) = {
+			post: "/admin/test",
+			body: "*"
+		};
+	}
+
+	// 更新
+	rpc Update(TestUpdateRequest) returns (TestUpdateResponse) {
+		option (google.api.http) = {
+			put: "/admin/test",
+			body: "*"
+		};
+	}
+
+	// 删除
+	rpc Del(TestDelRequest) returns (TestDelResponse){
+		option (google.api.http) = {
+			delete: "/admin/test/:id",
+			body: "*"
+		};
+	}
+}
+
+message TestGetRequest {
+	// 列表第几页，默认1
+	uint32 page = 1;
+	// 每页多少条数据
+	uint32 limit = 2;
+}
+
+message TestGetResponse {
+	// 数据列表
+	repeated TestInfo list = 1;
+	// 符合条件总数量，计算多少页
+	uint32 total = 2;
+}
+
+message TestPostRequest {
+	// 自增id
+	int32 Id = 1;
+	// 时间
+	string Date = 2;
+	// guard
+	string Guard = 3;
+	// ip
+	string Ip = 4;
+	// 请求地址
+	string Uri = 5;
+	// 参数
+	string Params = 6;
+	// uid
+	int32 UserId = 7;
+	// uid
+	string User = 8;
+	// http_type
+	string HttpType = 9;
+}
+
+message TestPostResponse {
+	// 提示语
+	string tip = 1;
+}
+
+message TestUpdateRequest {
+	// 自增id
+	int32 Id = 1;
+	// 时间
+	string Date = 2;
+	// guard
+	string Guard = 3;
+	// ip
+	string Ip = 4;
+	// 请求地址
+	string Uri = 5;
+	// 参数
+	string Params = 6;
+	// uid
+	int32 UserId = 7;
+	// uid
+	string User = 8;
+	// http_type
+	string HttpType = 9;
+}
+
+message TestUpdateResponse{
+	// 提示语
+	string tip = 1;
+}
+
+message TestDelRequest {}
+
+message TestDelResponse {
+	// 提示语
+	string tip = 1;
+}
+
+message TestInfo{
+	// 自增id
+	int32 Id = 1;
+	// 时间
+	string Date = 2;
+	// guard
+	string Guard = 3;
+	// ip
+	string Ip = 4;
+	// 请求地址
+	string Uri = 5;
+	// 参数
+	string Params = 6;
+	// uid
+	int32 UserId = 7;
+	// uid
+	string User = 8;
+	// http_type
+	string HttpType = 9;
+}
